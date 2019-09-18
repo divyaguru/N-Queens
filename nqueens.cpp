@@ -3,7 +3,7 @@ using namespace std;
 
 int **board;
     
-void creatBoard(int n) {
+void createBoard(int n) {
     board = new int*[n];
     for(int i=0; i<n; i++){
         board[i] = new int [n];
@@ -49,13 +49,14 @@ int nqueens(int n){
                 return 1;
             }
             
-            board[i][j]==0; //undo-ing all changes that do not lead to a solution        }
+            board[i][j]==0; //undo-ing all changes that do not lead to a solution
+        }
     }
     
     return 0;
 }
 
-/*
+
 void printBoard(int n){
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
@@ -70,19 +71,18 @@ void deleteBoard(int n){
         delete[] board[i];
     }
     delete[] board;
-}*/
+}
 
 int main(){
     int n;
     cin>>n;
-    
+
     createBoard(n);
     
     int x = nqueens(n);
     
-    if(x==1) cout<<"YES";
-    else cout<<"NO";
-    
+    if(x==1) cout<<"YES\n";
+    else cout<<"NO\n";
     
     printBoard(n);
     deleteBoard(n);
