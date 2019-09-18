@@ -1,22 +1,22 @@
 #include <iostream>
 using namespace std;
+
 int **board;
-
-
+    
 void creatBoard(int n) {
     board = new int*[n];
     for(int i=0; i<n; i++){
         board[i] = new int [n];
     }
-    
+    /*
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             ;
         }
-    }
+    }*/
 }
 
-int isDangerous(int p, int q){
+int isDangerous(int p, int q, int n){
     for(int i=0; i<n; i++){
         if(i==p){
             for(int k=0; k<n; k++){
@@ -38,29 +38,55 @@ int isDangerous(int p, int q){
 }
 
 int nqueens(int n){
-    if(n==0){
-        return 1;
-    }
+    if(n==0) return 1;
     
     for(int i=0; i<n; i++){
-        for(int=0; j<n; j++){
+        for(int j=0; j<n; j++){
+            if(isDangerous(i,j,n) == 1) continue;
+            else board[i][j] = 1;
             
-        }
+            if(nqueens(n-1)==1){ //that means we have arrived to a solution
+                return 1;
+            }
+            
+            board[i][j]==0; //undo-ing all changes that do not lead to a solution        }
     }
     
     return 0;
 }
 
-int main()
-{
+/*
+void printBoard(int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cout<<board[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+}
+
+void deleteBoard(int n){
+    for(int i=0; i<n; i++){
+        delete[] board[i];
+    }
+    delete[] board;
+}*/
+
+int main(){
     int n;
     cin>>n;
     
     createBoard(n);
     
-    nqueens(n);
+    int x = nqueens(n);
     
-    //nqueens(n)
+    if(x==1) cout<<"YES";
+    else cout<<"NO";
+    
+    
+    printBoard(n);
+    deleteBoard(n);
 
     return 0;
 }
+
