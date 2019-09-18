@@ -38,19 +38,25 @@ int isDangerous(int p, int q, int n){
 }
 
 int nqueens(int n){
+    cout<<"\nn="<<n;
     if(n==0) return 1;
     
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             if(isDangerous(i,j,n) == 1) continue;
-            else board[i][j] = 1;
-            
-            if(nqueens(n-1)==1){ //that means we have arrived to a solution
-                return 1;
+            else{
+                board[i][j] = 1;
+                cout<<"board n-1 "<<n-1<<"\n";
+                if(nqueens(n-1)==1){ //that means we have arrived to a solution
+                    return 1;
+                }
             }
             
             board[i][j]==0; //undo-ing all changes that do not lead to a solution
+            
+            cout<<"j="<<j;
         }
+        cout<<"\ni="<<i;
     }
     
     return 0;
